@@ -25,8 +25,9 @@ namespace LemonGit
         public MainPage()
         {
             this.InitializeComponent();
+            this.ViewModel = new loginViewModel();
         }
-
+        public loginViewModel ViewModel { get; set; }
         private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
         {
 
@@ -34,28 +35,47 @@ namespace LemonGit
 
         private void TryButton_Click(object sender, RoutedEventArgs e)
         {
-            int i;
-            for (i = 0; i < 10; i++)
-            {
 
+        }
+    }
+
+    public class LoginClass
+    {
+        public Boolean isLogin { get; set; }
+        public DateTime loginTime { get; set; }
+        public LoginClass()
+        {
+            this.isLogin = false;
+            this.loginTime = new DateTime(2006, 7, 5);
+        }
+        public string tellLoginSituation
+        {
+            get
+            {
+                
+                if(this.isLogin==true)
+                {
+                    return $"You have login! at:" + this.loginTime.ToString("d");
+                }
+                else
+                {
+                    return $"You have \n not login. \n Last login at: \n " + this.loginTime.ToString("d");
+                }
+            }
+        }
+        
+
+    }
+    public class loginViewModel
+    {
+        private LoginClass userlogin = new LoginClass();
+        public  LoginClass UserLogin
+        {
+            get
+            {
+                return this.userlogin;
             }
         }
     }
-    public class tryDataBinding
-    {
-        public string name { get; set; }
-        public string composition { get; set; }
-        public DateTime realeaseDateTIme { get; set; }
-        public void Recording()
-        {
-            this.name = "Charlie";
-            this.composition = "An exanple composition";
-            this.realeaseDateTIme = new DateTime(2006, 2, 17);
-        }
-        public string onlineSumary
-        {
-            get 
-        }
 
-    }
 }

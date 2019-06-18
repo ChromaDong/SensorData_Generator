@@ -17,7 +17,20 @@
             <RowDefinition Height="2*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Border Background="#2f5cb6"/>
+        <Border Background="#2f5cb6">
+            <TextBlock 
+                Text="登录了吗?" 
+                TextWrapping="Wrap"
+                FontSize="100"
+                HorizontalAlignment="Center"/>
+        </Border>
+        <Border>
+           <TextBlock 
+                Text="{x:Bind ViewModel.UserLogin.tellLoginSituation}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+               FontSize="120"/>    
+        </Border>
         <Border Grid.Column ="1" Background="#1f3d7a"/>
         <Border Grid.Row="1" Grid.ColumnSpan="2" Background="#152951"/>
         <StackPanel Grid.Column="1" Margin="40,0,0,0" VerticalAlignment="Center">
@@ -31,9 +44,7 @@
             HorizontalAlignment="Center" 
             VerticalAlignment="Center" 
             Background="White"
-            FontSize="60">
-            test Button
-        </Button>
+            FontSize="60" Content="Login!"/>
         <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal"
             HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Foreground="White" FontSize="25" Text="High: 66°" Margin="0,0,20,0"/>
@@ -41,4 +52,5 @@
             <TextBlock Foreground="White" FontSize="25" Text="Feels like: 63°"/>
         </StackPanel>
     </Grid>
+    
 </Page>
