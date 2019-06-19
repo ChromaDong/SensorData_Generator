@@ -270,3 +270,9 @@ __pycache__/
 ./Documents/Blender建模/makehuman-1.1.1-win32.zip
 ./Dataset/*
 *.bag
+./MixedRealityToolkit-Unity-mrtk_release/
+./MixedRealityToolkit-Unity-mrtk_release/*
+./MR/
+./MR/*
+MixedRealityToolkit-Unity-mrtk_release/
+MR/
