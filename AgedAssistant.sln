@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29001.49
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.489
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LemonGit", "LemonGit\LemonGit.csproj", "{5BA878C2-40FD-4744-8657-0060D36B5150}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RealSense", "RealSense\RealSense.vcxproj", "{09357612-9804-4569-88AD-D7FC8E5AD01E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App_developer", "App_developer\App_developer.csproj", "{58BCF17D-2EC1-4E9C-A258-DD745C245C9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,30 @@ Global
 		{09357612-9804-4569-88AD-D7FC8E5AD01E}.Release|x64.Build.0 = Release|x64
 		{09357612-9804-4569-88AD-D7FC8E5AD01E}.Release|x86.ActiveCfg = Release|Win32
 		{09357612-9804-4569-88AD-D7FC8E5AD01E}.Release|x86.Build.0 = Release|Win32
+		{58BCF17D-2EC1-4E9C-A258-DD745C245C9A}.Debug|ARM.ActiveCfg = Debug|ARM
+		{58BCF17D-2EC1-4E9C-A258-DD745C245C9A}.Debug|ARM.Build.0 = Debug|ARM
+		{58BCF17D-2EC1-4E9C-A258-DD745C245C9A}.Debug|ARM.Deploy.0 = Debug|ARM
+		{58BCF17D-2EC1-4E9C-A258-DD745C245C9A}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{58BCF17D-2EC1-4E9C-A258-DD745C245C9A}.Debug|ARM64.Build.0 = Debug|ARM64
+		{58BCF17D-2EC1-4E9C-A258-DD745C245C9A}.Debug|ARM64.Deploy.0 = Debug|ARM64
+		{58BCF17D-2EC1-4E9C-A258-DD745C245C9A}.Debug|x64.ActiveCfg = Debug|x64
+		{58BCF17D-2EC1-4E9C-A258-DD745C245C9A}.Debug|x64.Build.0 = Debug|x64
+		{58BCF17D-2EC1-4E9C-A258-DD745C245C9A}.Debug|x64.Deploy.0 = Debug|x64
+		{58BCF17D-2EC1-4E9C-A258-DD745C245C9A}.Debug|x86.ActiveCfg = Debug|x86
+		{58BCF17D-2EC1-4E9C-A258-DD745C245C9A}.Debug|x86.Build.0 = Debug|x86
+		{58BCF17D-2EC1-4E9C-A258-DD745C245C9A}.Debug|x86.Deploy.0 = Debug|x86
+		{58BCF17D-2EC1-4E9C-A258-DD745C245C9A}.Release|ARM.ActiveCfg = Release|ARM
+		{58BCF17D-2EC1-4E9C-A258-DD745C245C9A}.Release|ARM.Build.0 = Release|ARM
+		{58BCF17D-2EC1-4E9C-A258-DD745C245C9A}.Release|ARM.Deploy.0 = Release|ARM
+		{58BCF17D-2EC1-4E9C-A258-DD745C245C9A}.Release|ARM64.ActiveCfg = Release|ARM64
+		{58BCF17D-2EC1-4E9C-A258-DD745C245C9A}.Release|ARM64.Build.0 = Release|ARM64
+		{58BCF17D-2EC1-4E9C-A258-DD745C245C9A}.Release|ARM64.Deploy.0 = Release|ARM64
+		{58BCF17D-2EC1-4E9C-A258-DD745C245C9A}.Release|x64.ActiveCfg = Release|x64
+		{58BCF17D-2EC1-4E9C-A258-DD745C245C9A}.Release|x64.Build.0 = Release|x64
+		{58BCF17D-2EC1-4E9C-A258-DD745C245C9A}.Release|x64.Deploy.0 = Release|x64
+		{58BCF17D-2EC1-4E9C-A258-DD745C245C9A}.Release|x86.ActiveCfg = Release|x86
+		{58BCF17D-2EC1-4E9C-A258-DD745C245C9A}.Release|x86.Build.0 = Release|x86
+		{58BCF17D-2EC1-4E9C-A258-DD745C245C9A}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

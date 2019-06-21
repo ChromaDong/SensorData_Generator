@@ -1,0 +1,87 @@
+﻿<Page
+    x:Class="App_developer.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:App_developer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Windows.UI.Xaml.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        
+        <TextBlock
+            Text="Welcome back!"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Height="60"
+            FontSize="40"
+            Width="308"
+            Margin="208,90,0,0"/>
+        <Button 
+            Content="实时通话" 
+            HorizontalAlignment="Left" 
+            Height="220" 
+            Margin="221,207,0,0" 
+            VerticalAlignment="Top" 
+            Width="236"
+            FontSize="30" 
+            Click="Button_Click_2Async"
+            />
+        <Button 
+            Content="历史记录" 
+            HorizontalAlignment="Left" 
+            Margin="593,207,0,0" 
+            VerticalAlignment="Top" 
+            Height="220" 
+            Width="236"
+            FontSize="30" Click="Button_Click_1"/>
+        <NavigationView 
+            FontSize="25"
+            HorizontalAlignment="Left" 
+            Margin="0,0,0,0" 
+            VerticalAlignment="Top" 
+            Width="126" 
+            Height="990"
+            Background="Aquamarine"
+            PaneDisplayMode="Left"
+            />
+        <Button 
+            Content="这个我还没想好做什么按钮" 
+            HorizontalAlignment="Left" 
+            Margin="958,207,0,0" 
+            VerticalAlignment="Top" 
+            Height="220" 
+            Width="218" Click="Button_Click_2"/>
+        <TextBlock 
+            HorizontalAlignment="Left" 
+            Margin="208,38,0,0" 
+            Text="User xxx," 
+            FontSize="50"
+            TextWrapping="Wrap" 
+            VerticalAlignment="Top" 
+            Height="60" 
+            Width="308"/>
+        <HyperlinkButton 
+            Content="HistoryPage" 
+            Click="HyperlinkButton_Click"
+            HorizontalAlignment="Left"
+            Margin="0,100,0,0"
+            Background="GhostWhite"
+            Width="120"
+            VerticalAlignment="Top" />
+        
+
+
+
+        <!--
+        <ListView
+            Margin="110,20,30,40"
+            FontSize="50">
+            text
+        </ListView>
+        -->
+
+    </Grid>
+</Page>

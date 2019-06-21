@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 // https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x804 上介绍了“空白页”项模板
 
-namespace LemonGit
+namespace App1
 {
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
@@ -26,33 +26,5 @@ namespace LemonGit
         {
             this.InitializeComponent();
         }
-
-        private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void TryButton_Click(object sender, RoutedEventArgs e)
-        {
-            int i;
-            for (i = 0; i < 10; i++)
-            {
-
-            }
-        }
-    }
-    public class tryDataBinding
-    {
-        public string name { get; set; }
-        public string composition { get; set; }
-        public DateTime realeaseDateTIme { get; set; }
-        public void Recording()
-        {
-            this.name = "Charlie";
-            this.composition = "An exanple composition";
-            this.realeaseDateTIme = new DateTime(2006, 2, 17);
-        }
-        
-
     }
 }
