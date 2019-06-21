@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TensorflowLearning", "Tenso
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Basic Clasification", "Tensorflow_learning\Basic Clasification\Basic Clasification.pyproj", "{6A229B01-B03A-48F2-895D-FA2B3B37C185}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "CNNLearn", "Tensorflow_learning\CNNLearn\CNNLearn.pyproj", "{E0F8E164-B3CF-4EA4-8C10-A0F29CD267B2}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "CNNLearn", "CNNLearn\CNNLearn.pyproj", "{E0F8E164-B3CF-4EA4-8C10-A0F29CD267B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
