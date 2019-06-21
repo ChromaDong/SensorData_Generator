@@ -59,18 +59,26 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\intel.realsense.props" />
+    <Import Project="C:\Program Files (x86)\Intel RealSense SDK 2.0\glfw-imgui.props" />
+    <Import Project="C:\Program Files (x86)\Intel RealSense SDK 2.0\intel.realsense.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\intel.realsense.props" />
+    <Import Project="C:\Program Files (x86)\Intel RealSense SDK 2.0\glfw-imgui.props" />
+    <Import Project="C:\Program Files (x86)\Intel RealSense SDK 2.0\intel.realsense.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\intel.realsense.props" />
+    <Import Project="C:\Program Files (x86)\Intel RealSense SDK 2.0\glfw-imgui.props" />
+    <Import Project="C:\Program Files (x86)\Intel RealSense SDK 2.0\intel.realsense.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\intel.realsense.props" />
+    <Import Project="C:\Program Files (x86)\Intel RealSense SDK 2.0\glfw-imgui.props" />
+    <Import Project="C:\Program Files (x86)\Intel RealSense SDK 2.0\intel.realsense.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup />
@@ -130,6 +138,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="example.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -47,11 +47,14 @@ int main(int argc, char* argv[]) try
 		// Generate the pointcloud and texture mappings
 		points = pc.calculate(depth);
 
+		//因为不需要openGL, 我们把原先用来用openGL绘图的部分注释掉, 直接导入blender绘图
+		/*
 		// Upload the color frame to OpenGL
 		app_state.tex.upload(color);
 
 		// Draw the pointcloud
 		draw_pointcloud(app.width(), app.height(), app_state, points);
+	*/
 	}
 
 	return EXIT_SUCCESS;
