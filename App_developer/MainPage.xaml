@@ -34,10 +34,11 @@
         <TextBlock HorizontalAlignment="Left" Height="38" Margin="722,131,0,0" Text="当前活动：唱、跳、rap、篮球" FontSize="20" TextWrapping="Wrap" VerticalAlignment="Top" Width="326"/>
         <TextBlock HorizontalAlignment="Left" Margin="722,179,0,0" TextWrapping="Wrap" FontSize="20" VerticalAlignment="Top" Height="25" Width="284"><Run Text="今日运动时长"/><Run Text=":"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="722,236,0,0" Text="高危动作" TextWrapping="Wrap" FontSize="20" VerticalAlignment="Top" Height="44" Width="273"/>
-        <Button Content="行为记录" FontSize="50" Foreground="AntiqueWhite" Background="Salmon" HorizontalAlignment="Left" Margin="393,311,0,0" VerticalAlignment="Top" Height="184" Width="298" Click="Button_Click_4"/>
-        <Button Content="通话记录" FontSize="50" Foreground="AntiqueWhite" Background="DeepSkyBlue" HorizontalAlignment="Left" Margin="762,311,0,0" VerticalAlignment="Top" Height="184" Width="306" Click="Button_Click_5"/>
+        <Button Content="行为记录" FontSize="50" Foreground="AntiqueWhite" Background="CornflowerBlue" HorizontalAlignment="Left" Margin="393,311,0,0" VerticalAlignment="Top" Height="184" Width="298" Click="Button_Click_4"/>
+        <Button Content="通话记录" FontSize="50" Foreground="AntiqueWhite" Background="#78ddaf" HorizontalAlignment="Left" Margin="762,311,0,0" VerticalAlignment="Top" Height="184" Width="306" Click="Button_Click_5"/>
         <Button Content="营养摄入" FontSize="50" Foreground="AntiqueWhite" Background="CadetBlue" HorizontalAlignment="Left" Margin="393,512,0,0" VerticalAlignment="Top" Height="178" Width="298" Click="Button_Click_6"/>
-        <Button Content="睡眠状况" FontSize="50" Foreground="AntiqueWhite" Background="CornflowerBlue" HorizontalAlignment="Left" Margin="762,512,0,0" VerticalAlignment="Top" Height="176" Width="306" Click="Button_Click_7"/>
+        <Button Content="睡眠状况" FontSize="50" Foreground="AntiqueWhite" Background="#2f698d" HorizontalAlignment="Left" Margin="762,512,0,0" VerticalAlignment="Top" Height="176" Width="306" Click="Button_Click_7"/>
+       
 
 
 

@@ -21,15 +21,50 @@ namespace App_developer
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
     public sealed partial class Connect_his : Page
-    {
+    {   
         public Connect_his()
         {
             this.InitializeComponent();
+            this.ViewModel = new RecordingViewModel_1();
         }
+        public RecordingViewModel_1 ViewModel { get; set; }
+
+
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(MainPage));
         }
+
     }
+
+    public class RecordingViewModel_1
+    {
+        private Recording_1 defaultRecording_1 = new Recording_1();
+        public Recording_1 DefaultRecording_1 { get { return this.defaultRecording_1; } }
+    }
+
+    public class Recording_1
+    {
+        public string Towhom { get; set; }
+        public string StartTime { get; set; }
+        public int Time_Last { get; set; }
+        public Recording_1()
+        {
+            this.Towhom = "经纪人";
+            this.StartTime = "18:36";
+            this.Time_Last = 1200;
+        }
+        public string OneLineSummary_1
+        {
+            get
+            {
+                return $"{this.Towhom}          {this.StartTime},   "
+                    + this.Time_Last + "秒";
+            }
+        }
+
+    }
+
 }

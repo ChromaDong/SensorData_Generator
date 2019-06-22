@@ -9,6 +9,11 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <TextBlock Text="{x:Bind ViewModel.DefaultRecording_1.OneLineSummary_1}"
+    HorizontalAlignment="Center"
+    VerticalAlignment="Center"/>
+        </Grid>
         <NavigationView 
             FontSize="25"
             HorizontalAlignment="Left" 
@@ -19,5 +24,7 @@
             PaneDisplayMode="Auto"/>
 
         <Button Content="返回主页" FontSize="20" HorizontalAlignment="Left" Margin="327,88,0,0" VerticalAlignment="Top" Height="41" Width="133" Click="Button_Click"/>
+        <TextBlock HorizontalAlignment="Left" Margin="327,23,0,0" Text="通话记录" FontSize="40" TextWrapping="Wrap" VerticalAlignment="Top" Height="60" Width="199"/>
+        
     </Grid>
 </Page>

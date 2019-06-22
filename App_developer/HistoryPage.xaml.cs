@@ -22,16 +22,44 @@ namespace App_developer
     /// </summary>
     public sealed partial class HistoryPage : Page
     {
+        
         public HistoryPage()
         {
             this.InitializeComponent();
+            this.ViewModel = new RecordingViewModel();
         }
-
+        public RecordingViewModel ViewModel { get; set; }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(MainPage));
         }
 
-        
+
+    }
+    public class RecordingViewModel
+    {
+        private Recording defaultRecording = new Recording();
+        public Recording DefaultRecording { get { return this.defaultRecording; } }
+    }
+
+    public class Recording
+    {
+        public string Activity { get; set; }
+        public string HappenTime { get; set; }
+        public int TimeLast { get; set; }
+        public Recording()
+        {
+            this.Activity = "rap";
+            this.HappenTime = "18:36";
+            this.TimeLast = 1200;
+        }
+        public string OneLineSummary
+        {
+            get
+            {
+                return $"{this.Activity}          {this.HappenTime},   "
+                    + this.TimeLast + "秒";
+            }
+        }
     }
 }
