@@ -18,9 +18,10 @@ def read_and_decode(filename): # 读入tfrecords
     img = tf.reshape(img, [128, 128, 3])  #reshape为128*128的3通道图片
     img = tf.cast(img, tf.float32) * (1. / 255) - 0.5 #在流中抛出img张量
     label = tf.cast(features['label'], tf.int32) #在流中抛出label张量
+    sess = tf.Session()
     print(img)
     print(label)
-    return img, label
+    return sess.run(img), sess.run(label)
 
 print("Defined finished")
 
