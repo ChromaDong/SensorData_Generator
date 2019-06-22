@@ -22,9 +22,8 @@ def read_and_decode(filename): # 读入tfrecords
 
 print("Defined finished")
 
-x = "训练样本"  
 print("# 二维矩阵 每一行是一个样本 列数为样本个数")
-y = "训练样本对应标签"
+
 
 print("start to read dataset and decode...")
 
