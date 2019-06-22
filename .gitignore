@@ -276,3 +276,5 @@ __pycache__/
 ./MR/*
 MixedRealityToolkit-Unity-mrtk_release/
 MR/
+rs_bag2image/
+re_bag2image/*

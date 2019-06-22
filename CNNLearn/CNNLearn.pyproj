@@ -26,6 +26,9 @@
     <Compile Include="makeDataSet.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="readBagExample.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="cnn_venv\">
