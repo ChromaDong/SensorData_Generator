@@ -1,5 +1,6 @@
 import tensorflow as tf
 from tensorflow import keras
+import numpy as np
 
 print("import finished")
 def read_and_decode(filename): # 读入tfrecords
@@ -17,7 +18,8 @@ def read_and_decode(filename): # 读入tfrecords
     img = tf.reshape(img, [128, 128, 3])  #reshape为128*128的3通道图片
     img = tf.cast(img, tf.float32) * (1. / 255) - 0.5 #在流中抛出img张量
     label = tf.cast(features['label'], tf.int32) #在流中抛出label张量
- 
+    print(img)
+    print(label)
     return img, label
 
 print("Defined finished")
@@ -48,6 +50,7 @@ print("Start compline")
 
 model.compile(optimizer=keras.optimizers.Adam(0.0001),
               loss="categorical_crossentropy", metrics=['accuracy'])
+
 print("编译模型 使用Adam优化器 如果用梯度下降可以改成 keras.optimizers.SGD 0.01是学习速率 损失函数是交叉熵")
 
 print("start to train")
