@@ -24,8 +24,6 @@ namespace App_developer
 
         private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Button b = (Button)sender;
-            b.Foreground = new SolidColorBrush(Windows.UI.Colors.Bisque);
             ContentDialog Connect_to = new ContentDialog
             {
                 Title = "404 Not Found",
@@ -37,9 +35,7 @@ namespace App_developer
         }
 
         private async void Button_Click_2Async(object sender, RoutedEventArgs e)
-        {
-            Button b = (Button)sender;
-            b.Foreground = new SolidColorBrush(Windows.UI.Colors.Bisque);
+        {            
             ContentDialog Tishi = new ContentDialog
             {
                 Title = "Confirm calling",
@@ -69,8 +65,45 @@ namespace App_developer
         }
         private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
         {
+                      
             this.Frame.Navigate(typeof(HistoryPage));
         }
 
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(HistoryPage));
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Connect_his));
+        }
+
+        private async void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            ContentDialog nutrition_con = new ContentDialog()
+            {
+                Title = "营养摄入情况",
+            Content = "对不起，对象一直摄入垃圾食品，未能获取营养状况，请尽快更改这样的习惯！",
+                CloseButtonText = "好的"
+            };
+        ContentDialogResult result = await nutrition_con.ShowAsync();
+    }
+
+        private async void Button_Click_7(object sender, RoutedEventArgs e)
+        {
+            ContentDialog sleep_con = new ContentDialog()
+            {
+                Title = "睡眠质量",
+                Content = "连开发者都无法拥有充足的睡眠，你怎么能期望这么努力的坤坤拥有充足的睡眠呢？",
+                CloseButtonText = "辛苦了"
+            };
+            ContentDialogResult result = await sleep_con.ShowAsync();
+        }
     }
 }

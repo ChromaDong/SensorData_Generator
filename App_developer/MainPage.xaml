@@ -9,60 +9,17 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        
-        <TextBlock
-            Text="Welcome back!"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Height="60"
-            FontSize="40"
-            Width="308"
-            Margin="208,90,0,0"/>
-        <Button 
-            Content="实时通话" 
-            HorizontalAlignment="Left" 
-            Height="220" 
-            Margin="221,207,0,0" 
-            VerticalAlignment="Top" 
-            Width="236"
-            FontSize="30" 
-            Click="Button_Click_2Async"
-            />
-        <Button 
-            Content="历史记录" 
-            HorizontalAlignment="Left" 
-            Margin="593,207,0,0" 
-            VerticalAlignment="Top" 
-            Height="220" 
-            Width="236"
-            FontSize="30" Click="Button_Click_1"/>
+    <Grid RenderTransformOrigin="0.564,0.685">
+
+
         <NavigationView 
             FontSize="25"
             HorizontalAlignment="Left" 
-            Margin="0,0,0,0" 
-            VerticalAlignment="Top" 
-            Width="126" 
-            Height="990"
-            Background="Aquamarine"
-            PaneDisplayMode="Left"
-            />
-        <Button 
-            Content="这个我还没想好做什么按钮" 
-            HorizontalAlignment="Left" 
-            Margin="958,207,0,0" 
-            VerticalAlignment="Top" 
-            Height="220" 
-            Width="218" Click="Button_Click_2"/>
-        <TextBlock 
-            HorizontalAlignment="Left" 
-            Margin="208,38,0,0" 
-            Text="User xxx," 
-            FontSize="50"
-            TextWrapping="Wrap" 
-            VerticalAlignment="Top" 
-            Height="60" 
-            Width="308"/>
+            VerticalAlignment="Center" 
+            Width="264" 
+            Height="720"
+            Background="LightGray"
+            PaneDisplayMode="LeftMinimal"/>
         <HyperlinkButton 
             Content="HistoryPage" 
             Click="HyperlinkButton_Click"
@@ -71,7 +28,20 @@
             Background="GhostWhite"
             Width="120"
             VerticalAlignment="Top" />
-        
+        <Image x:Name="user_image" Source="Assets\cxk.jpg" Stretch="UniformToFill" HorizontalAlignment="Left" Height="184" Margin="393,40,0,0" VerticalAlignment="Top" Width="186" />
+        <TextBlock HorizontalAlignment="Left" Margin="393,236,0,0" Text="Username" FontSize="40" TextWrapping="Wrap" VerticalAlignment="Top" Height="63" Width="186"/>
+        <TextBlock HorizontalAlignment="Left" Height="65" Margin="722,46,0,0" Text="当前状态" FontSize="45" TextWrapping="Wrap" VerticalAlignment="Top" Width="218"/>
+        <TextBlock HorizontalAlignment="Left" Height="38" Margin="722,131,0,0" Text="当前活动：唱、跳、rap、篮球" FontSize="20" TextWrapping="Wrap" VerticalAlignment="Top" Width="326"/>
+        <TextBlock HorizontalAlignment="Left" Margin="722,179,0,0" TextWrapping="Wrap" FontSize="20" VerticalAlignment="Top" Height="25" Width="284"><Run Text="今日运动时长"/><Run Text=":"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="722,236,0,0" Text="高危动作" TextWrapping="Wrap" FontSize="20" VerticalAlignment="Top" Height="44" Width="273"/>
+        <Button Content="行为记录" FontSize="50" Foreground="AntiqueWhite" Background="Salmon" HorizontalAlignment="Left" Margin="393,311,0,0" VerticalAlignment="Top" Height="184" Width="298" Click="Button_Click_4"/>
+        <Button Content="通话记录" FontSize="50" Foreground="AntiqueWhite" Background="DeepSkyBlue" HorizontalAlignment="Left" Margin="762,311,0,0" VerticalAlignment="Top" Height="184" Width="306" Click="Button_Click_5"/>
+        <Button Content="营养摄入" FontSize="50" Foreground="AntiqueWhite" Background="CadetBlue" HorizontalAlignment="Left" Margin="393,512,0,0" VerticalAlignment="Top" Height="178" Width="298" Click="Button_Click_6"/>
+        <Button Content="睡眠状况" FontSize="50" Foreground="AntiqueWhite" Background="CornflowerBlue" HorizontalAlignment="Left" Margin="762,512,0,0" VerticalAlignment="Top" Height="176" Width="306" Click="Button_Click_7"/>
+
+
+
+
 
 
 
