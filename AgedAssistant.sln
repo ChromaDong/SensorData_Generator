@@ -13,6 +13,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Basic Clasification", "Tens
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "CNNLearn", "CNNLearn\CNNLearn.pyproj", "{E0F8E164-B3CF-4EA4-8C10-A0F29CD267B2}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "AdvancdCNNexample", "AdvancdCNNexample\AdvancdCNNexample.pyproj", "{60358E02-F8CF-4434-ADF9-68616115A36F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,16 @@ Global
 		{E0F8E164-B3CF-4EA4-8C10-A0F29CD267B2}.Release|ARM64.ActiveCfg = Release|Any CPU
 		{E0F8E164-B3CF-4EA4-8C10-A0F29CD267B2}.Release|x64.ActiveCfg = Release|Any CPU
 		{E0F8E164-B3CF-4EA4-8C10-A0F29CD267B2}.Release|x86.ActiveCfg = Release|Any CPU
+		{60358E02-F8CF-4434-ADF9-68616115A36F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60358E02-F8CF-4434-ADF9-68616115A36F}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{60358E02-F8CF-4434-ADF9-68616115A36F}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{60358E02-F8CF-4434-ADF9-68616115A36F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{60358E02-F8CF-4434-ADF9-68616115A36F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{60358E02-F8CF-4434-ADF9-68616115A36F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60358E02-F8CF-4434-ADF9-68616115A36F}.Release|ARM.ActiveCfg = Release|Any CPU
+		{60358E02-F8CF-4434-ADF9-68616115A36F}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{60358E02-F8CF-4434-ADF9-68616115A36F}.Release|x64.ActiveCfg = Release|Any CPU
+		{60358E02-F8CF-4434-ADF9-68616115A36F}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -94,6 +106,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{6A229B01-B03A-48F2-895D-FA2B3B37C185} = {9BD177E8-394A-4F58-BE26-4EC0B3F23765}
 		{E0F8E164-B3CF-4EA4-8C10-A0F29CD267B2} = {9BD177E8-394A-4F58-BE26-4EC0B3F23765}
+		{60358E02-F8CF-4434-ADF9-68616115A36F} = {9BD177E8-394A-4F58-BE26-4EC0B3F23765}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DED5B4FF-EE34-4D89-AD22-94D9B572CD3A}
