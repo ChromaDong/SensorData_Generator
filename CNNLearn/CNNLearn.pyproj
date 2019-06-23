@@ -29,6 +29,9 @@
     <Compile Include="makeDataSet.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="newExample.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="readBagExample.py">
       <SubType>Code</SubType>
     </Compile>

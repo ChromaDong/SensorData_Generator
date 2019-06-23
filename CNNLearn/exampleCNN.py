@@ -1,115 +1,249 @@
-import tensorflow as tf 
-import numpy as np
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Mar 30 16:54:02 2018
 
-def read_and_decode(filename): # 读入tfrecords
-    filename_queue = tf.train.string_input_producer([filename],shuffle=True)#生成一个queue队列
- 
-    reader = tf.TFRecordReader()
-    _, serialized_example = reader.read(filename_queue)#返回文件名和文件
-    features = tf.parse_single_example(serialized_example,
-                                       features={
-                                           'label': tf.FixedLenFeature([], tf.int64),
-                                           'img_raw' : tf.FixedLenFeature([], tf.string),
-                                       })#将image数据和label取出来
- 
-    img = tf.decode_raw(features['img_raw'], tf.uint8)
-    img = tf.reshape(img, [128, 128, 3])  #reshape为128*128的3通道图片
-    img = tf.cast(img, tf.float32) * (1. / 255) - 0.5 #在流中抛出img张量
-    label = tf.cast(features['label'], tf.int32) #在流中抛出label张量
- 
-    return img, label
-epoch = 15
-batch_size = 20
+@author: shirhe-lyh
+"""
 
-def one_hot(labels,Label_class):
-    one_hot_label = np.array([[int(i == int(labels[j])) for i in range(Label_class)] for j in range(len(labels))])   
-    return one_hot_label
+import tensorflow as tf
 
-#initial weights
-def weight_variable(shape):
-    initial = tf.truncated_normal(shape, stddev = 0.02)
-    return tf.Variable(initial)
-#initial bias
-def bias_variable(shape):
-    initial = tf.constant(0.0, shape=shape)
-    return tf.Variable(initial)
-
-#convolution layer
-def conv2d(x,W):
-    return tf.nn.conv2d(x, W, strides=[1,1,1,1], padding='SAME')
-
-#max_pool layer
-def max_pool_4x4(x):
-    return tf.nn.max_pool(x, ksize=[1,4,4,1], strides=[1,4,4,1], padding='SAME')
-
-x = tf.placeholder(tf.float32, [batch_size,128,128,3])
-y_ = tf.placeholder(tf.float32, [batch_size,2])
-
-#first convolution and max_pool layer
-W_conv1 = weight_variable([5,5,3,32])
-b_conv1 = bias_variable([32])
-h_conv1 = tf.nn.relu(conv2d(x, W_conv1) + b_conv1)
-h_pool1 = max_pool_4x4(h_conv1)
-
-#second convolution and max_pool layer
-W_conv2 = weight_variable([5,5,32,64])
-b_conv2 = bias_variable([64])
-h_conv2 = tf.nn.relu(conv2d(h_pool1, W_conv2) + b_conv2)
-h_pool2 = max_pool_4x4(h_conv2)
-
-#变成全连接层，用一个MLP处理
-reshape = tf.reshape(h_pool2,[batch_size, -1])
-dim = reshape.get_shape()[1].value
-W_fc1 = weight_variable([dim, 1024])
-b_fc1 = bias_variable([1024])
-h_fc1 = tf.nn.relu(tf.matmul(reshape, W_fc1) + b_fc1)
-
-#dropout
-keep_prob = tf.placeholder(tf.float32)
-h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob)
-
-W_fc2 = weight_variable([1024,2])
-b_fc2 = bias_variable([2])
-y_conv = tf.nn.softmax(tf.matmul(h_fc1_drop, W_fc2) + b_fc2)
-
-#损失函数及优化算法
-cross_entropy = tf.reduce_mean(-tf.reduce_sum(y_ * tf.log(y_conv), reduction_indices=[1]))
-train_step = tf.train.AdamOptimizer(0.001).minimize(cross_entropy)
-
-correct_prediction = tf.equal(tf.argmax(y_conv,1),tf.argmax(y_,1))
-accuracy = tf.reduce_mean(tf.cast(correct_prediction,tf.float32))
+from abc import ABCMeta
+from abc import abstractmethod
 
 
-img, label = read_and_decode("/data/home/charlie/source/repos/SensorData_Generator/CNNLearn/data.tfrecords")
-img_test, label_test = read_and_decode("/data/home/charlie/source/repos/SensorData_Generator/CNNLearn/data.tfrecords")
+class BaseModel(object):
+    """Abstract base class for any model."""
+    __metaclass__ = ABCMeta
+    
+    def __init__(self, num_classes):
+        """Constructor.
+        
+        Args:
+            num_classes: Number of classes.
+        """
+        self._num_classes = num_classes
+        
+    @property
+    def num_classes(self):
+        return self._num_classes
+    
+    @abstractmethod
+    def preprocess(self, inputs):
+        """Input preprocessing. To be override by implementations.
+        
+        Args:
+            inputs: A float32 tensor with shape [batch_size, height, width,
+                num_channels] representing a batch of images.
+            
+        Returns:
+            preprocessed_inputs: A float32 tensor with shape [batch_size, 
+                height, widht, num_channels] representing a batch of images.
+        """
+        pass
+    
+    @abstractmethod
+    def predict(self, preprocessed_inputs):
+        """Predict prediction tensors from inputs tensor.
+        
+        Outputs of this function can be passed to loss or postprocess functions.
+        
+        Args:
+            preprocessed_inputs: A float32 tensor with shape [batch_size,
+                height, width, num_channels] representing a batch of images.
+            
+        Returns:
+            prediction_dict: A dictionary holding prediction tensors to be
+                passed to the Loss or Postprocess functions.
+        """
+        pass
+    
+    @abstractmethod
+    def postprocess(self, prediction_dict, **params):
+        """Convert predicted output tensors to final forms.
+        
+        Args:
+            prediction_dict: A dictionary holding prediction tensors.
+            **params: Additional keyword arguments for specific implementations
+                of specified models.
+                
+        Returns:
+            A dictionary containing the postprocessed results.
+        """
+        pass
+    
+    @abstractmethod
+    def loss(self, prediction_dict, groundtruth_lists):
+        """Compute scalar loss tensors with respect to provided groundtruth.
+        
+        Args:
+            prediction_dict: A dictionary holding prediction tensors.
+            groundtruth_lists: A list of tensors holding groundtruth
+                information, with one entry for each image in the batch.
+                
+        Returns:
+            A dictionary mapping strings (loss names) to scalar tensors
+                representing loss values.
+        """
+        pass
+    
+        
+class Model(BaseModel):
+    """A simple 10-classification CNN model definition."""
+    
+    def __init__(self,
+                 is_training,
+                 num_classes):
+        """Constructor.
+        
+        Args:
+            is_training: A boolean indicating whether the training version of
+                computation graph should be constructed.
+            num_classes: Number of classes.
+        """
+        super(Model, self).__init__(num_classes=num_classes)
+        
+        self._is_training = is_training
+        
+    def preprocess(self, inputs):
+        """Predict prediction tensors from inputs tensor.
+        
+        Outputs of this function can be passed to loss or postprocess functions.
+        
+        Args:
+            preprocessed_inputs: A float32 tensor with shape [batch_size,
+                height, width, num_channels] representing a batch of images.
+            
+        Returns:
+            prediction_dict: A dictionary holding prediction tensors to be
+                passed to the Loss or Postprocess functions.
+        """
+        preprocessed_inputs = tf.to_float(inputs)
+        preprocessed_inputs = tf.subtract(preprocessed_inputs, 128.0)
+        preprocessed_inputs = tf.div(preprocessed_inputs, 128.0)
+        return preprocessed_inputs
+    
+    def predict(self, preprocessed_inputs):
+        """Predict prediction tensors from inputs tensor.
+        
+        Outputs of this function can be passed to loss or postprocess functions.
+        
+        Args:
+            preprocessed_inputs: A float32 tensor with shape [batch_size,
+                height, width, num_channels] representing a batch of images.
+            
+        Returns:
+            prediction_dict: A dictionary holding prediction tensors to be
+                passed to the Loss or Postprocess functions.
+        """
+        shape = preprocessed_inputs.get_shape().as_list()
+        height, width, num_channels = shape[1:]
 
-#使用shuffle_batch可以随机打乱输入
-img_batch, label_batch = tf.train.shuffle_batch([img, label],
-                                                batch_size=batch_size, capacity=2000,
-                                                min_after_dequeue=1000)
-img_test, label_test = tf.train.shuffle_batch([img_test, label_test],
-                                                batch_size=batch_size, capacity=2000,
-                                                min_after_dequeue=1000)
-init = tf.initialize_all_variables()
-t_vars = tf.trainable_variables()
-print(t_vars)
-with tf.Session() as sess:
-    sess.run(init)
-    coord = tf.train.Coordinator() 
-    threads=tf.train.start_queue_runners(sess=sess,coord=coord) 
-    batch_idxs = int(2314/batch_size)
-    for i in range(epoch):
-        for j in range(batch_idxs):
-            val, l = sess.run([img_batch, label_batch])
-            l = one_hot(l,2)
-            _, acc = sess.run([train_step, accuracy], feed_dict={x: val, y_: l, keep_prob: 0.5})
-            print("Epoch:[%4d] [%4d/%4d], accuracy:[%.8f]" % (i, j, batch_idxs, acc) )
-    val, l = sess.run([img_test, label_test])
-    l = one_hot(l,2)
-    print(l)
-    y, acc = sess.run([y_conv,accuracy], feed_dict={x: val, y_: l, keep_prob: 1})
-    print(y)
-    print("test accuracy: [%.8f]" % (acc))
-
-    coord.request_stop()
-    coord.join(threads)
+        conv1_weights = tf.get_variable(
+            'conv1_weights', shape=[3, 3, num_channels, 32], 
+            dtype=tf.float32)
+        conv1_biases = tf.get_variable(
+            'conv1_biases', shape=[32], dtype=tf.float32)
+        conv2_weights = tf.get_variable(
+            'conv2_weights', shape=[3, 3, 32, 32], dtype=tf.float32)
+        conv2_biases = tf.get_variable(
+            'conv2_biases', shape=[32], dtype=tf.float32)
+        conv3_weights = tf.get_variable(
+            'conv3_weights', shape=[3, 3, 32, 64], dtype=tf.float32)
+        conv3_biases = tf.get_variable(
+            'conv3_biases', shape=[64], dtype=tf.float32)
+        conv4_weights = tf.get_variable(
+            'conv4_weights', shape=[3, 3, 64, 64], dtype=tf.float32)
+        conv4_biases = tf.get_variable(
+            'conv4_biases', shape=[64], dtype=tf.float32)
+        conv5_weights = tf.get_variable(
+            'conv5_weights', shape=[3, 3, 64, 128], dtype=tf.float32)
+        conv5_biases = tf.get_variable(
+            'conv5_biases', shape=[128], dtype=tf.float32)
+        conv6_weights = tf.get_variable(
+            'conv6_weights', shape=[3, 3, 128, 128], dtype=tf.float32)
+        conv6_biases = tf.get_variable(
+            'conv6_biases', shape=[128], dtype=tf.float32)
+            
+        flat_height = height // 4
+        flat_width = width // 4
+        flat_size = flat_height * flat_width * 128
+        
+        fc7_weights = tf.get_variable(
+            'fc7_weights', shape=[flat_size, 512], dtype=tf.float32)
+        fc7_biases = tf.get_variable(
+            'f7_biases', shape=[512], dtype=tf.float32)
+        fc8_weights = tf.get_variable(
+            'fc8_weights', shape=[512, 512], dtype=tf.float32)
+        fc8_biases = tf.get_variable(
+            'f8_biases', shape=[512], dtype=tf.float32)
+        fc9_weights = tf.get_variable(
+            'fc9_weights', shape=[512, self.num_classes], dtype=tf.float32)
+        fc9_biases = tf.get_variable(
+            'f9_biases', shape=[self.num_classes], dtype=tf.float32)
+        
+        net = preprocessed_inputs
+        net = tf.nn.conv2d(net, conv1_weights, strides=[1, 1, 1, 1],
+                           padding='SAME')
+        net = tf.nn.relu(tf.nn.bias_add(net, conv1_biases))
+        net = tf.nn.conv2d(net, conv2_weights, strides=[1, 1, 1, 1],
+                           padding='SAME')
+        net = tf.nn.relu(tf.nn.bias_add(net, conv2_biases))
+        net = tf.nn.max_pool(net, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1],
+                             padding='SAME')
+        net = tf.nn.conv2d(net, conv3_weights, strides=[1, 1, 1, 1],
+                           padding='SAME')
+        net = tf.nn.relu(tf.nn.bias_add(net, conv3_biases))
+        net = tf.nn.conv2d(net, conv4_weights, strides=[1, 1, 1, 1],
+                           padding='SAME')
+        net = tf.nn.relu(tf.nn.bias_add(net, conv4_biases))
+        net = tf.nn.max_pool(net, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1],
+                             padding='SAME')
+        net = tf.nn.conv2d(net, conv5_weights, strides=[1, 1, 1, 1],
+                           padding='SAME')
+        net = tf.nn.relu(tf.nn.bias_add(net, conv5_biases))
+        net = tf.nn.conv2d(net, conv6_weights, strides=[1, 1, 1, 1],
+                           padding='SAME')
+        net = tf.nn.relu(tf.nn.bias_add(net, conv6_biases))
+        net = tf.reshape(net, shape=[-1, flat_size])
+        net = tf.nn.relu(tf.add(tf.matmul(net, fc7_weights), fc7_biases))
+        net = tf.nn.relu(tf.add(tf.matmul(net, fc8_weights), fc8_biases))
+        net = tf.add(tf.matmul(net, fc9_weights), fc9_biases)
+        prediction_dict = {'logits': net}
+        return prediction_dict
+    
+    def postprocess(self, prediction_dict):
+        """Convert predicted output tensors to final forms.
+        
+        Args:
+            prediction_dict: A dictionary holding prediction tensors.
+            **params: Additional keyword arguments for specific implementations
+                of specified models.
+                
+        Returns:
+            A dictionary containing the postprocessed results.
+        """
+        logits = prediction_dict['logits']
+        logits = tf.nn.softmax(logits)
+        classes = tf.cast(tf.argmax(logits, axis=1), dtype=tf.int32)
+        postprecessed_dict = {'classes': classes}
+        return postprecessed_dict
+    
+    def loss(self, prediction_dict, groundtruth_lists):
+        """Compute scalar loss tensors with respect to provided groundtruth.
+        
+        Args:
+            prediction_dict: A dictionary holding prediction tensors.
+            groundtruth_lists: A list of tensors holding groundtruth
+                information, with one entry for each image in the batch.
+                
+        Returns:
+            A dictionary mapping strings (loss names) to scalar tensors
+                representing loss values.
+        """
+        logits = prediction_dict['logits']
+        loss = tf.reduce_mean(
+            tf.nn.sparse_softmax_cross_entropy_with_logits(
+                logits=logits, labels=groundtruth_lists))
+        loss_dict = {'loss': loss}
+        return loss_dict

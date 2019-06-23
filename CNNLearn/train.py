@@ -21,8 +21,28 @@ def read_and_decode(filename): # 读入tfrecords
     sess = tf.Session()
     print(img)
     print(label)
-    return sess.run(img), sess.run(label)
+    np_img=np.array(img)
+    np_label=np.array(label)
+    return np_img, np_label
 
+def my_read_dataset(filename):
+	filename='./data.tfrecords'
+	dataset=record_iterator = tf.python_io.tf_record_iterator(path=filename)
+
+	for string_record in record_iterator:
+		example = tf.train.Example()
+		example.ParseFromString(string_record)
+		print(example)
+		# Exit after 1 iteration as this is purely demonstrative.
+		break
+
+def myReadDataset(filename):
+	filenames = [filename]
+	raw_dataset = tf.data.TFRecordDataset(filenames)
+	raw_dataset
+	print(raw_dataset)
+my_read_dataset('123')
+myReadDataset('./data.tfrecords')
 print("Defined finished")
 
 print("# 二维矩阵 每一行是一个样本 列数为样本个数")
