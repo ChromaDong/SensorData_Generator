@@ -278,3 +278,5 @@ MixedRealityToolkit-Unity-mrtk_release/
 MR/
 rs_bag2image/
 re_bag2image/*
+CNNLearn/cnn_venv/
+CNNLearn/cnn_venv/*

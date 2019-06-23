@@ -36,14 +36,20 @@ print("二维矩阵 每一行是对应样本取到该分类的概率 形如[0,..
 
 print("start define model")
 
-model = keras.Sequential()
+model = keras.Sequential([
+	keras.layers.Flatten(input_shape=(128, 128)),
+    keras.layers.Dense(128, activation=tf.nn.relu),
+    keras.layers.Dense(3, activation=tf.nn.softmax)
+	])
 
 print("32为该层神经元个数 activation为激活函数")
 
+'''
 model.add(keras.layers.Dense(32, activation="sigmoid"))
 model.add(keras.layers.Dense(16, activation="sigmoid"))
 model.add(keras.layers.Dense(12, activation="softplus"))
 model.add(keras.layers.Dense(10, activation="softmax"))  
+'''
 
 print("最后输出长度为10的向量")
 

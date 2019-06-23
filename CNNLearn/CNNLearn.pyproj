@@ -32,6 +32,8 @@
     <Compile Include="readBagExample.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="train.py" />
+    <Compile Include="use.py" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="cnn_venv\">
