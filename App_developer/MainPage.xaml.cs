@@ -1,7 +1,10 @@
 ﻿using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
+
+using MySql.Data.MySqlClient;
+using System.Data;
+using System.Diagnostics;
 
 // https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x804 上介绍了“空白页”项模板
 
@@ -15,11 +18,21 @@ namespace App_developer
         public MainPage()
         {
             this.InitializeComponent();
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            string M_str_sqlcon = "server=10.xxx.xx.xxx;user id=foo;password=bar;database=baz";
+            MySqlConnection mysqlcon = new MySqlConnection(M_str_sqlcon);
+            MySqlCommand mysqlcom = new MySqlCommand("select * from table1", mysqlcon);
+            mysqlcon.Open();
+            MySqlDataReader mysqlread = mysqlcom.ExecuteReader(CommandBehavior.CloseConnection);
+            while (mysqlread.Read())
+            {
+                System.Diagnostics.Debug.WriteLine(mysqlread.GetString(0) + ":" + mysqlread.GetString(1));
+            }
+            mysqlcon.Close();
         }
 
         private async void Button_Click_1(object sender, RoutedEventArgs e)
@@ -104,6 +117,20 @@ namespace App_developer
                 CloseButtonText = "辛苦了"
             };
             ContentDialogResult result = await sleep_con.ShowAsync();
+        }
+
+        private void Button_Click_8(object sender, RoutedEventArgs e)
+        {
+            string M_str_sqlcon = "server=118.89.38.33;user id=root;password=jzl90412;database=uwpapp";
+            MySqlConnection mysqlcon = new MySqlConnection(M_str_sqlcon);
+            MySqlCommand mysqlcom = new MySqlCommand("select * from table1", mysqlcon);
+            mysqlcon.Open();
+            MySqlDataReader mysqlread = mysqlcom.ExecuteReader(CommandBehavior.CloseConnection);
+            while (mysqlread.Read())
+            {
+                Debug.WriteLine(mysqlread.GetString(0) + ":" + mysqlread.GetString(1));
+            }
+            mysqlcon.Close();
         }
     }
 }
