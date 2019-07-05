@@ -1,33 +1,60 @@
-#include <rs.hpp> // Include RealSense Cross Platform API
-#include <iostream>             // for cout
+// License: Apache 2.0. See LICENSE file in root directory.
+// Copyright(c) 2015-2017 Intel Corporation. All Rights Reserved.
 
-// Hello RealSense example demonstrates the basics of connecting to a RealSense device
-// and taking advantage of depth data
+#include <librealsense2/rs.hpp> // Include RealSense Cross Platform API
+#include "example.hpp"          // Include short list of convenience functions for rendering
+
+#include <algorithm>            // std::min, std::max
+
+// Helper functions
+void register_glfw_callbacks(window& app, glfw_state& app_state);
+
 int main(int argc, char* argv[]) try
 {
-	// Create a Pipeline - this serves as a top-level API for streaming and processing frames
-	rs2::pipeline p;
+	// Create a simple OpenGL window for rendering:
+	window app(1280, 720, "RealSense Pointcloud Example");
+	// Construct an object to manage view state
+	glfw_state app_state;
+	// register callbacks to allow manipulation of the pointcloud
+	register_glfw_callbacks(app, app_state);
 
-	// Configure and start the pipeline
-	p.start();
+	// Declare pointcloud object, for calculating pointclouds and texture mappings
+	rs2::pointcloud pc;
+	// We want the points object to be persistent so we can display the last cloud when a frame drops
+	rs2::points points;
 
-	while (true)
+	// Declare RealSense pipeline, encapsulating the actual device and sensors
+	rs2::pipeline pipe;
+	// Start streaming with default recommended configuration
+	pipe.start();
+
+	while (app) // Application still alive?
 	{
-		// Block program until frames arrive
-		rs2::frameset frames = p.wait_for_frames();
+		// Wait for the next set of frames from the camera
+		auto frames = pipe.wait_for_frames();
 
-		// Try to get a frame of a depth image
-		rs2::depth_frame depth = frames.get_depth_frame();
+		auto color = frames.get_color_frame();
 
-		// Get the depth frame's dimensions
-		float width = depth.get_width();
-		float height = depth.get_height();
+		// For cameras that don't have RGB sensor, we'll map the pointcloud to infrared instead of color
+		if (!color)
+			color = frames.get_infrared_frame();
 
-		// Query the distance from the camera to the object in the center of the image
-		float dist_to_center = depth.get_distance(width / 2, height / 2);
+		// Tell pointcloud object to map to this color frame
+		pc.map_to(color);
 
-		// Print the distance
-		std::cout << "The camera is facing an object " << dist_to_center << " meters away \r";
+		auto depth = frames.get_depth_frame();
+
+		// Generate the pointcloud and texture mappings
+		points = pc.calculate(depth);
+
+		//因为不需要openGL, 我们把原先用来用openGL绘图的部分注释掉, 直接导入blender绘图
+		/*
+		// Upload the color frame to OpenGL
+		app_state.tex.upload(color);
+
+		// Draw the pointcloud
+		draw_pointcloud(app.width(), app.height(), app_state, points);
+	*/
 	}
 
 	return EXIT_SUCCESS;

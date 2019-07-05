@@ -18,19 +18,9 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\..\..\Resource\librealsense\include\librealsense2\rs.h" />
-    <ClInclude Include="..\..\..\..\Resource\librealsense\include\librealsense2\rs.hpp" />
-    <ClInclude Include="..\..\..\..\Resource\librealsense\include\librealsense2\rsutil.h" />
-    <ClInclude Include="..\..\..\..\Resource\librealsense\include\librealsense2\rs_advanced_mode.h" />
-    <ClInclude Include="..\..\..\..\Resource\librealsense\include\librealsense2\rs_advanced_mode.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{09357612-9804-4569-88AD-D7FC8E5AD01E}</ProjectGuid>
+    <ProjectGuid>{AEB84D01-8B7D-4FE2-A2C9-5D4DAF3C7D61}</ProjectGuid>
     <RootNamespace>RealSense</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -68,30 +58,44 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\intel.realsense.props" />
+    <Import Project="C:\Program Files (x86)\Intel RealSense SDK 2.0\glfw-imgui.props" />
+    <Import Project="C:\Program Files (x86)\Intel RealSense SDK 2.0\intel.realsense.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\intel.realsense.props" />
+    <Import Project="C:\Program Files (x86)\Intel RealSense SDK 2.0\glfw-imgui.props" />
+    <Import Project="C:\Program Files (x86)\Intel RealSense SDK 2.0\intel.realsense.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\intel.realsense.props" />
+    <Import Project="C:\Program Files (x86)\Intel RealSense SDK 2.0\glfw-imgui.props" />
+    <Import Project="C:\Program Files (x86)\Intel RealSense SDK 2.0\intel.realsense.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\intel.realsense.props" />
+    <Import Project="C:\Program Files (x86)\Intel RealSense SDK 2.0\glfw-imgui.props" />
+    <Import Project="C:\Program Files (x86)\Intel RealSense SDK 2.0\intel.realsense.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup />
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\Intel RealSense SDK 2.0\include;C:\Program Files (x86)\Intel RealSense SDK 2.0\third-party;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\Intel RealSense SDK 2.0\lib\$(PlatformShortName);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
@@ -132,6 +136,12 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="example.hpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
