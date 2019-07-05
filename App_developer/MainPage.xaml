@@ -38,7 +38,8 @@
         <Button Content="通话记录" FontSize="50" Foreground="AntiqueWhite" Background="#78ddaf" HorizontalAlignment="Left" Margin="762,311,0,0" VerticalAlignment="Top" Height="184" Width="306" Click="Button_Click_5"/>
         <Button Content="营养摄入" FontSize="50" Foreground="AntiqueWhite" Background="CadetBlue" HorizontalAlignment="Left" Margin="393,512,0,0" VerticalAlignment="Top" Height="178" Width="298" Click="Button_Click_6"/>
         <Button Content="睡眠状况" FontSize="50" Foreground="AntiqueWhite" Background="#2f698d" HorizontalAlignment="Left" Margin="762,512,0,0" VerticalAlignment="Top" Height="176" Width="306" Click="Button_Click_7"/>
-       
+        <TextBlock HorizontalAlignment="Left" Margin="1052,38,0,0" Text="界面展示DEMO" FontSize="40" Foreground="Red" TextWrapping="Wrap" VerticalAlignment="Top" Height="118" Width="170"/>
+
 
 
 

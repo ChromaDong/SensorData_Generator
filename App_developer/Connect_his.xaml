@@ -11,8 +11,11 @@
     <Grid>
         <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
             <TextBlock Text="{x:Bind ViewModel.DefaultRecording_1.OneLineSummary_1}"
-    HorizontalAlignment="Center"
-    VerticalAlignment="Center"/>
+    HorizontalAlignment="Left"
+    VerticalAlignment="Top"
+                       Margin="330,180,0,0"
+                       FontSize="20"/>
+            <TextBlock HorizontalAlignment="Left" Margin="330,94,0,0" Text="联系人 | 时间 | 通话时长" FontSize="30" TextWrapping="Wrap" VerticalAlignment="Top"/>
         </Grid>
         <NavigationView 
             FontSize="25"
@@ -23,8 +26,8 @@
             Background="LightGray"
             PaneDisplayMode="Auto"/>
 
-        <Button Content="返回主页" FontSize="20" HorizontalAlignment="Left" Margin="327,88,0,0" VerticalAlignment="Top" Height="41" Width="133" Click="Button_Click"/>
-        <TextBlock HorizontalAlignment="Left" Margin="327,23,0,0" Text="通话记录" FontSize="40" TextWrapping="Wrap" VerticalAlignment="Top" Height="60" Width="199"/>
+        <Button Content="返回主页" FontSize="20" HorizontalAlignment="Left" Margin="546,35,0,0" VerticalAlignment="Top" Height="41" Width="133" Click="Button_Click"/>
+        <TextBlock HorizontalAlignment="Left" Margin="330,23,0,0" Text="通话记录" FontSize="40" TextWrapping="Wrap" VerticalAlignment="Top" Height="60" Width="199"/>
         
     </Grid>
 </Page>

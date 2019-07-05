@@ -43,6 +43,7 @@ namespace App_developer
     {
         private Recording_1 defaultRecording_1 = new Recording_1();
         public Recording_1 DefaultRecording_1 { get { return this.defaultRecording_1; } }
+
     }
 
     public class Recording_1
@@ -53,14 +54,14 @@ namespace App_developer
         public Recording_1()
         {
             this.Towhom = "经纪人";
-            this.StartTime = "18:36";
+            this.StartTime = "2019/06/22 19:51";
             this.Time_Last = 1200;
         }
         public string OneLineSummary_1
         {
             get
             {
-                return $"{this.Towhom}          {this.StartTime},   "
+                return $"{this.Towhom}            {this.StartTime}                     "
                     + this.Time_Last + "秒";
             }
         }

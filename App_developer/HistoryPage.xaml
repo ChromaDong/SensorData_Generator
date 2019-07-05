@@ -11,8 +11,11 @@
     <Grid>
         <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
             <TextBlock Text="{x:Bind ViewModel.DefaultRecording.OneLineSummary}"
-    HorizontalAlignment="Center"
-    VerticalAlignment="Center"/>
+             HorizontalAlignment="Left"
+              VerticalAlignment="Top"
+                       FontSize="20"
+                       Margin="330,180,0,0"/>
+            <TextBlock HorizontalAlignment="Left" Margin="326,113,0,0" FontSize="30" Text="行为 | 发生时间 | 时长" TextWrapping="Wrap" VerticalAlignment="Top" Height="39" Width="874"/>
         </Grid>
         <TextBlock 
             HorizontalAlignment="Left" 
@@ -21,7 +24,7 @@
             FontSize="40"
             TextWrapping="Wrap" 
             VerticalAlignment="Top"/>
-        <Button Content="返回主页" FontSize="20" HorizontalAlignment="Left" Margin="327,88,0,0" VerticalAlignment="Top" Height="41" Width="133" Click="Button_Click"/>
+        <Button Content="返回主页" FontSize="20" HorizontalAlignment="Left" Margin="547,50,0,0" VerticalAlignment="Top" Height="41" Width="133" Click="Button_Click"/>
         <NavigationView 
             FontSize="25"
             HorizontalAlignment="Left" 
@@ -30,7 +33,14 @@
             Height="720"
             Background="LightGray"
             PaneDisplayMode="LeftMinimal"/>
-        <TextBlock HorizontalAlignment="Left" Margin="592,62,0,0" Text="今天" FontSize="20" TextWrapping="Wrap" VerticalAlignment="Top" Height="27" Width="104"/>
+        <TextBlock HorizontalAlignment="Left" Margin="732,62,0,0" Text="今天" FontSize="20" TextWrapping="Wrap" VerticalAlignment="Top" Height="27" Width="104"/>
+        <ListView x:Name="listView1" Margin="330,220,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" >
+            <x:String >行走</x:String>
+            <x:String>跑步</x:String>
+            <x:String>下蹲</x:String>
+            <x:String>平躺</x:String>
+            <x:String>倚靠</x:String>
+        </ListView>
 
     </Grid>
 </Page>

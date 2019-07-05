@@ -22,7 +22,7 @@ namespace App_developer
     /// </summary>
     public sealed partial class HistoryPage : Page
     {
-        
+
         public HistoryPage()
         {
             this.InitializeComponent();
@@ -57,7 +57,7 @@ namespace App_developer
         {
             get
             {
-                return $"{this.Activity}          {this.HappenTime},   "
+                return $"{this.Activity}                {this.HappenTime}               "
                     + this.TimeLast + "秒";
             }
         }
